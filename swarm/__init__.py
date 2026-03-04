@@ -5,7 +5,7 @@
 实现与大型全参数模型竞争的性能。
 """
 
-from .experts import SwarmExpert, SwarmExpertPool
+from .experts import SwarmExpert, SwarmExpertPool, ExpertConfig
 from .router import HybridRouter
 from .swarm_model import SwarmModel, create_swarm_model
 
@@ -14,6 +14,7 @@ __version__ = "0.1.0"
 __all__ = [
     "SwarmExpert",
     "SwarmExpertPool",
+    "ExpertConfig",
     "HybridRouter",
     "SwarmModel",
     "create_swarm_model",

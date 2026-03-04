@@ -59,7 +59,7 @@ class Stage1Config:
     batch_size: int = 4
     gradient_accumulation_steps: int = 8
     learning_rate: float = 1e-3
-    num_epochs: int = 3
+    num_epochs: int = 20  # 增加训练轮数，更充分学习
     warmup_steps: int = 50
 
     # 系统

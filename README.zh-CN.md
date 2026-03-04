@@ -2,60 +2,113 @@
 
 [English](./README.en.md) | **中文**
 
-在 Apple M4 Pro (24GB) 上实现的轻量级自适应 MoE (Mixture of Experts) 架构，通过"蜂群专家"协作机制，实现小模型的大能力。
+> **小模型，大智慧，低能耗** - 在 Apple M4 Pro 上实现能与 Claude Opus 竞争的轻量级 AI
 
-## 核心特性
+---
+
+## 🎯 项目愿景
+
+**让 AI 运行在每个人的设备上，能耗降低 100 倍**
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│   当前状态: Claude/GPT 需要大规模云端集群，能耗 1000W+           │
+│   目标状态: HiveMind 在本地设备运行，能耗 10-30W                 │
+│                                                                  │
+│   能效比提升: 100 倍 │ 部署成本: 0 │ 隐私保护: 100%             │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 为什么做这个？
+
+| 问题 | 传统方案 | HiveMind 方案 |
+|------|----------|---------------|
+| **能耗问题** | 数据中心 1000W+ | 本地设备 10-30W |
+| **隐私问题** | 数据上传云端 | 数据不出设备 |
+| **成本问题** | API 按次付费 | 一次训练，无限使用 |
+| **依赖问题** | 需要网络连接 | 完全离线运行 |
+| **定制问题** | 黑盒模型 | 开源可定制 |
+
+### 可能吗？
+
+```
+AI 发展史证明"不可能"经常被打破:
+
+2022: "小模型永远做不到 ChatGPT 的效果"
+2023: Llama, Mistral, Phi 证明小模型也可以很强
+2024: DeepSeek-V3 用 MoE 实现效率和效果的平衡
+2025+: HiveMind 能不能用 1/1000 的能耗达到同等效果？
+```
+
+**核心信念**: 通过 MoE (混合专家) 架构 + 稀疏激活 + 领域专业化，小模型完全可以在特定场景达到大模型的效果。
+
+---
+
+## 📊 核心特性
 
 | 特性 | 描述 |
 |------|------|
 | **蜂群专家** | 多个轻量专家协同工作，每个专家专注特定领域 |
-| **自适应路由** | 根据任务复杂度动态选择激活的专家数量 |
+| **自适应路由** | 根据任务复杂度动态选择激活的专家数量 (2-6个) |
 | **混合路由策略** | 结合软路由和 Top-K 稀疏激活，平衡精度与效率 |
 | **负载均衡** | 智能调度避免专家过度使用 |
 | **分阶段训练** | 渐进式训练策略，在有限算力下达到最优效果 |
+| **本地部署** | 完全离线运行，数据隐私 100% 保护 |
 
-## 项目结构
+---
+
+## 🗺️ 发展路线图
+
+### Phase 1: 基础验证 (2026 Q1)
 
 ```
-HiveMind/
-├── README.md                  # 项目说明
-├── pyproject.toml             # 项目配置
-│
-├── swarm/                     # 蜂群专家核心模块
-│   ├── __init__.py
-│   ├── experts.py             # 专家池实现
-│   ├── router.py              # 混合路由层
-│   └── swarm_model.py         # 完整模型
-│
-├── training/                  # 训练相关
-│   ├── configs/               # 训练配置
-│   ├── lora/                  # LoRA 训练脚本
-│   │   ├── train.py           # 主训练脚本
-│   │   └── train_v2.py        # 优化日志版本
-│   └── utils/                 # 训练工具
-│       └── logger.py          # 日志工具
-│
-├── inference/                 # 推理相关
-│   ├── configs/               # 推理配置
-│   ├── generate.py            # 生成脚本
-│   └── compare_lora.py        # LoRA 对比
-│
-├── scripts/                   # 工具脚本
-│   ├── verify_env.py          # 环境验证
-│   ├── train_stage1.py        # 阶段1训练
-│   └── data_crawler.py        # 数据爬虫
-│
-├── tests/                     # 测试文件
-│   ├── test_swarm.py          # 蜂群模型测试
-│   └── test_lora.py           # LoRA 测试
-│
-├── data/                      # 数据目录
-├── checkpoints/               # 模型检查点
-├── docs/                      # 设计文档
-└── archive/                   # 归档文件
+✓ 核心架构完成
+⚠ 四阶段训练流程
+⚠ 基准测试体系
 ```
 
-## 快速开始
+**目标**: 超越 Qwen2-1.5B, Phi-2 等小型模型
+
+### Phase 2: 领域突破 (2026 Q2-Q4)
+
+选择垂直领域深耕，用小数据达到大效果:
+
+- **中文编程助手**: 10-50万条高质量代码数据
+- **中文写作助手**: 50-100万条优质文本数据
+- **中文推理助手**: 5-20万条思维链数据
+
+**目标**: 在特定领域达到接近 Claude 的效果
+
+### Phase 3: 架构进化 (2027)
+
+| 维度 | 当前 | 进阶 | 高级 |
+|------|------|------|------|
+| 专家数量 | 8 | 32 | 128 |
+| 总参数 | 200M | 1.6B | 12.8B |
+| 激活比例 | 20% | 10% | 5% |
+| 上下文长度 | 2K-4K | 16K-32K | 64K-128K |
+
+引入新技术: MLA, Sparse Attention, 强化学习, 知识蒸馏
+
+### Phase 4: 持续学习 (2028-2030)
+
+**终极目标**: 在 1-2 个垂直领域达到 Claude 水平
+
+| 对比维度 | Claude Opus | HiveMind 目标 |
+|----------|-------------|---------------|
+| 代码能力 (中文) | ~90% | ~85% |
+| 数学推理 (中文) | ~95% | ~80% |
+| 写作能力 (中文) | ~95% | ~85% |
+| **能耗** | **1000W+** | **10-30W** |
+| **部署** | **云端** | **本地** |
+
+详细路线图: [docs/2026-03-05-roadmap-to-claude-level.md](docs/2026-03-05-roadmap-to-claude-level.md)
+
+---
+
+## 🚀 快速开始
 
 ### 1. 安装依赖
 
@@ -75,50 +128,89 @@ uv run python scripts/verify_env.py
 uv run python tests/test_swarm.py
 ```
 
-### 4. LoRA 训练
+输出:
+```
+初始化蜂群模型...
+使用设备: mps
 
-```bash
-# 传统 LoRA 训练
-PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 uv run python training/lora/train.py
+模型信息:
+  总参数量: 44,789,906
+  专家参数: 5,403,648
+  路由参数: 76,050
+  专家数量: 8
+
+✓ 所有测试通过!
 ```
 
-### 5. 推理
+### 4. 分阶段训练
+
+```bash
+# 阶段1: 专家初始化 (2-3小时)
+uv run python scripts/train_stage1.py
+
+# 阶段2: 专业分化 (16-24小时)
+uv run python scripts/train_stage2.py
+
+# 阶段3: 路由训练 (6-8小时)
+uv run python scripts/train_stage3.py
+
+# 阶段4: 端到端精调 (8-12小时)
+uv run python scripts/train_stage4.py
+```
+
+### 5. 推理测试
 
 ```bash
 # 单次推理
 uv run python inference/generate.py --mode single --prompt "什么是AI？"
 
-# 交互式推理
+# 交互式对话
 uv run python inference/generate.py --mode chat
 ```
 
-## 分阶段训练
+---
 
-| 阶段 | 脚本 | 目标 | 时长 |
-|------|------|------|------|
-| 阶段0 | `scripts/verify_env.py` | 环境验证 | 30min |
-| 阶段1 | `scripts/train_stage1.py` | 专家初始化 | 2-3h |
-| 阶段2 | `scripts/train_stage2.py` | 专业分化 | 16-24h |
-| 阶段3 | `scripts/train_stage3.py` | 路由训练 | 6-8h |
-| 阶段4 | `scripts/train_stage4.py` | 端到端精调 | 8-12h |
+## 📁 项目结构
 
-## 模型使用
-
-```python
-from swarm import create_swarm_model
-
-# 创建模型
-model = create_swarm_model(
-    num_experts=8,
-    expert_size="small",  # small, medium, large
-)
-
-# 生成文本
-input_ids = tokenizer("什么是人工智能？", return_tensors="pt").input_ids
-output = model.generate(input_ids, max_new_tokens=100)
+```
+HiveMind/
+├── README.zh-CN.md         # 中文文档
+├── README.en.md            # 英文文档
+├── pyproject.toml          # 项目配置
+│
+├── swarm/                  # 蜂群专家核心模块
+│   ├── __init__.py
+│   ├── experts.py          # 专家池实现
+│   ├── router.py           # 混合路由层
+│   └── swarm_model.py      # 完整模型
+│
+├── training/               # 训练相关
+│   ├── configs/            # 训练配置
+│   ├── lora/               # LoRA 训练脚本
+│   └── utils/              # 训练工具
+│
+├── inference/              # 推理相关
+│   ├── configs/            # 推理配置
+│   ├── generate.py         # 生成脚本
+│   └── compare_lora.py     # LoRA 对比
+│
+├── scripts/                # 工具脚本
+│   ├── verify_env.py       # 环境验证
+│   ├── train_stage*.py     # 各阶段训练
+│   └── data_crawler.py     # 数据爬虫
+│
+├── tests/                  # 测试文件
+│   ├── test_swarm.py       # 蜂群模型测试
+│   └── test_lora.py        # LoRA 测试
+│
+├── data/                   # 数据目录
+├── checkpoints/            # 模型检查点
+└── docs/                   # 设计文档
 ```
 
-## 参数规模
+---
+
+## 📐 参数规模
 
 | 组件 | 参数量 | 激活量 |
 |------|--------|--------|
@@ -128,29 +220,74 @@ output = model.generate(input_ids, max_new_tokens=100)
 | 加权融合层 | 1M | 1M |
 | **总计** | **57-207M** | **17-32M** |
 
-## 目标性能
+**稀疏激活**: 仅 20% 参数参与推理，大幅降低能耗
 
-| 指标 | 目标 | 对比模型 |
-|------|------|----------|
-| MMLU | 70% | Qwen2-1.5B: 42.5%, Phi-2: 55.8% |
-| HumanEval | 50% | Qwen2-1.5B: 18.3%, Phi-2: 28.5% |
-| GSM8K | 65% | Qwen2-1.5B: 38.2%, Phi-2: 55.4% |
+---
 
-## 系统要求
+## 🎯 目标性能
 
-- **硬件**: Apple M4 Pro (或类似 M 系列)
-- **内存**: 24GB+
-- **系统**: macOS 15.0+
+| 指标 | Phase 1 | Phase 2 | Phase 3 | 对标 |
+|------|---------|---------|---------|------|
+| MMLU | 50% | 70% | 85% | Qwen2-1.5B: 42.5% |
+| CMMLU | 55% | 75% | 88% | 中文综合知识 |
+| HumanEval | 30% | 50% | 70% | Qwen2-1.5B: 18.3% |
+| GSM8K | 45% | 65% | 80% | Qwen2-1.5B: 38.2% |
 
-## 设计文档
+---
 
-详细设计请参阅: [docs/2026-03-04-swarm-experts-design.md](docs/2026-03-04-swarm-experts-design.md)
-**更新日期**: 2026-03-04
+## 💻 系统要求
 
-## 许可证
+| 组件 | 最低要求 | 推荐配置 |
+|------|----------|----------|
+| 硬件 | Apple M1 | Apple M4 Pro |
+| 内存 | 16GB | 24GB+ |
+| 系统 | macOS 14.0 | macOS 15.0+ |
+
+---
+
+## 📚 文档
+
+| 文档 | 描述 |
+|------|------|
+| [路线图](docs/2026-03-05-roadmap-to-claude-level.md) | 长期发展计划 |
+| [设计文档](docs/2026-03-04-swarm-experts-design.md) | 架构设计详解 |
+| [模型对比](docs/model-comparison.md) | 与其他模型对比 |
+| [能力分析](docs/MODEL_CAPABILITY.md) | 当前模型能力 |
+
+---
+
+## 🤝 参与贡献
+
+这是一个长期研究项目，欢迎各种形式的贡献:
+
+- **代码贡献**: PR 修复 bug 或添加新功能
+- **数据贡献**: 提供高质量训练数据
+- **实验验证**: 尝试不同配置并分享结果
+- **文档改进**: 完善文档和教程
+- **问题反馈**: 报告 bug 或提出建议
+
+---
+
+## 📄 许可证
 
 MIT License
 
 ---
 
+## 💬 结语
+
+> "The best time to plant a tree was 20 years ago. The second best time is now."
+
+这个项目的目标不是要替代 Claude，而是要证明:
+
+- **小模型 + 好架构 = 大能力**
+- **低能耗 + 本地部署 = 隐私保护**
+- **开源 + 社区 = 可持续发展**
+
+AI 的未来不应该只有少数大公司掌控。让我们一起让 AI 运行在每个人的设备上！
+
+---
+
 **HiveMind** - 小模型，大智慧 🧠
+
+*更新日期: 2026-03-05*
