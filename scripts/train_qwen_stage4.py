@@ -230,7 +230,7 @@ def train_qwen_moe_stage4(config: QwenMoEStage4Config):
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=val_dataset,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
     )
 
     # 开始训练

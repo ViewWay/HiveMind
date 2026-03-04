@@ -201,7 +201,7 @@ def train_domain(model, tokenizer, config, domain_name, domain_config):
         model=model,
         args=training_args,
         train_dataset=dataset,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
     )
 
     # 训练
