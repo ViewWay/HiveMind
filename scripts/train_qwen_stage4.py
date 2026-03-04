@@ -216,7 +216,7 @@ def train_qwen_moe_stage4(config: QwenMoEStage4Config):
         eval_steps=50,
         save_total_limit=3,
         fp16=False,
-        use_mps_device=(config.device == "mps"),
+        bf16=False,
         dataloader_num_workers=0,
         remove_unused_columns=False,
         report_to="none",

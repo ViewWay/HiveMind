@@ -190,7 +190,7 @@ def train_domain(model, tokenizer, config, domain_name, domain_config):
         save_steps=500,
         save_total_limit=1,
         fp16=False,
-        use_mps_device=(config.device == "mps"),
+        bf16=False,
         dataloader_num_workers=0,
         remove_unused_columns=False,
         report_to="none",

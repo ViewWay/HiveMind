@@ -381,8 +381,8 @@ def train_qwen_moe_stage1(config: QwenMoEConfig):
         save_steps=100,
         eval_steps=100,
         save_total_limit=2,
-        fp16=False,  # MPS 不支持 fp16
-        use_mps_device=(config.device == "mps"),
+        fp16=False,  # MPS 不完全支持 fp16
+        bf16=False,  # MPS 不支持 bf16
         dataloader_num_workers=0,
         remove_unused_columns=False,
         report_to="none",

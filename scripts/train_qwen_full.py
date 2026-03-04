@@ -382,23 +382,16 @@ def run_stage(stage_index: int, model_path: Optional[str] = None, dry_run: bool 
     start_time = time.time()
 
     try:
-        if IS_WINDOWS:
-            # Windows 需要特殊处理
-            process = subprocess.Popen(
-                cmd,
-                cwd=Path(__file__).parent.parent,
-                env=env,
-                creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if IS_WINDOWS else 0,
-            )
-            returncode = process.wait()
-        else:
-            result = subprocess.run(
-                cmd,
-                cwd=Path(__file__).parent.parent,
-                env=env,
-                check=False,
-            )
-            returncode = result.returncode
+        # 统一使用 subprocess.run，兼容所有平台
+        result = subprocess.run(
+            cmd,
+            cwd=Path(__file__).parent.parent,
+            env=env,
+            check=False,
+            # Windows: 不需要 shell=True
+            # Unix: 直接执行列表形式的命令
+        )
+        returncode = result.returncode
 
         elapsed = time.time() - start_time
 
