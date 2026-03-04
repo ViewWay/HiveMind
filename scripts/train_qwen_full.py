@@ -246,19 +246,33 @@ def check_model_path(custom_path: Optional[str] = None) -> bool:
         return False
 
     # 检查关键文件
-    required_patterns = [
+    required_files = [
         "config.json",
         "tokenizer.json",
-        "model.safetensors",
     ]
 
-    for pattern in required_patterns:
-        if not list(model_path.glob(pattern)):
+    for filename in required_files:
+        if not (model_path / filename).exists():
             if RICH_AVAILABLE:
-                console.print(f"[red]✗ 缺少文件匹配: {pattern}[/red]")
+                console.print(f"[red]✗ 缺少文件: {filename}[/red]")
             else:
-                print(f"✗ 缺少文件匹配: {pattern}")
+                print(f"✗ 缺少文件: {filename}")
             return False
+
+    # 检查 safetensors 文件 (支持分片)
+    safetensors_files = list(model_path.glob("*.safetensors"))
+    # 排除 index.json
+    safetensors_files = [f for f in safetensors_files if not f.name.endswith(".index.json")]
+
+    if not safetensors_files:
+        if RICH_AVAILABLE:
+            console.print(f"[red]✗ 缺少 safetensors 模型文件[/red]")
+        else:
+            print(f"✗ 缺少 safetensors 模型文件")
+        return False
+
+    if RICH_AVAILABLE:
+        console.print(f"[dim]  找到 {len(safetensors_files)} 个 safetensors 文件[/dim]")
 
     if RICH_AVAILABLE:
         console.print(f"[green]✓ Qwen3.5-4B 模型就绪[/green]")
