@@ -546,15 +546,7 @@ def main():
     # 确认
     if not args.yes and not args.dry_run:
         try:
-            if IS_WINDOWS:
-                input("\n按 Enter 开始训练...")
-            else:
-                # 使用更兼容的方式
-                import msvcrt
-                if IS_WINDOWS and hasattr(msvcrt, 'getch'):
-                    msvcrt.getch()
-                else:
-                    input("\n按 Enter 开始训练...")
+            input("\n按 Enter 开始训练...")
         except (KeyboardInterrupt, EOFError):
             if RICH_AVAILABLE:
                 console.print("\n[yellow]已取消[/yellow]")
