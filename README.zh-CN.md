@@ -1,5 +1,7 @@
 # HiveMind - 蜂巢智能专家系统
 
+[English](./README.en.md) | **中文**
+
 在 Apple M4 Pro (24GB) 上实现的轻量级自适应 MoE (Mixture of Experts) 架构，通过"蜂群专家"协作机制，实现小模型的大能力。
 
 ## 核心特性
@@ -143,6 +145,7 @@ output = model.generate(input_ids, max_new_tokens=100)
 ## 设计文档
 
 详细设计请参阅: [docs/2025-03-04-swarm-experts-design.md](docs/2025-03-04-swarm-experts-design.md)
+**更新日期**: 2026-03-04
 
 ## 许可证
 
