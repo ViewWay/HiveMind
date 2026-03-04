@@ -56,7 +56,7 @@ class QwenMoEStage4Config:
     batch_size: int = 1
     gradient_accumulation_steps: int = 32  # 更多累积
     learning_rate: float = 5e-5  # 极低学习率
-    num_epochs: int = 3
+    num_epochs: int = 5  # 精细调整，避免过拟合
     warmup_steps: int = 50
 
     load_in_8bit: bool = True

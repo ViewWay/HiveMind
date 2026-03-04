@@ -69,7 +69,7 @@ class QwenMoEConfig:
     batch_size: int = 1  # Qwen 较大，小批次
     gradient_accumulation_steps: int = 16
     learning_rate: float = 2e-4
-    num_epochs: int = 3
+    num_epochs: int = 5  # LoRA 适应基础模型
     warmup_steps: int = 100
 
     # 量化配置

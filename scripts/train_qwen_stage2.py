@@ -79,7 +79,7 @@ class QwenMoEStage2Config:
     batch_size: int = 1
     gradient_accumulation_steps: int = 16
     learning_rate: float = 1e-4  # 更低的学习率
-    num_epochs: int = 3  # 每个领域训练轮数
+    num_epochs: int = 10  # 领域分化需要更多轮次
     warmup_steps: int = 50
 
     # 量化

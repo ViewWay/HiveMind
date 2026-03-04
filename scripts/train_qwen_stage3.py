@@ -56,7 +56,7 @@ class QwenMoEStage3Config:
     batch_size: int = 1
     gradient_accumulation_steps: int = 16
     learning_rate: float = 5e-4
-    num_epochs: int = 5
+    num_epochs: int = 15  # 路由器学习复杂映射
     warmup_steps: int = 50
 
     load_in_8bit: bool = True
