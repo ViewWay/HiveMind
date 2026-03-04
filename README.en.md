@@ -141,7 +141,7 @@ output = model.generate(input_ids, max_new_tokens=100)
 
 ## Documentation
 
-Detailed design: [docs/2025-03-04-swarm-experts-design.md](docs/2025-03-04-swarm-experts-design.md)
+Detailed design: [docs/2026-03-04-swarm-experts-design.md](docs/2026-03-04-swarm-experts-design.md)
 
 Model comparison: [docs/model-comparison.md](docs/model-comparison.md)
 

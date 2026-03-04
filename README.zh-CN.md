@@ -144,7 +144,7 @@ output = model.generate(input_ids, max_new_tokens=100)
 
 ## 设计文档
 
-详细设计请参阅: [docs/2025-03-04-swarm-experts-design.md](docs/2025-03-04-swarm-experts-design.md)
+详细设计请参阅: [docs/2026-03-04-swarm-experts-design.md](docs/2026-03-04-swarm-experts-design.md)
 **更新日期**: 2026-03-04
 
 ## 许可证
