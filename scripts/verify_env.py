@@ -25,7 +25,7 @@ except ImportError:
     RICH_AVAILABLE = False
 
 # 颜色支持
-from logger import Colors, SimpleLogger
+from training.utils.logger import Colors, SimpleLogger
 
 # 初始化
 if RICH_AVAILABLE:

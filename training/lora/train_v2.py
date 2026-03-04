@@ -17,7 +17,7 @@ from transformers import (
 from peft import LoraConfig, get_peft_model
 from datasets import Dataset
 from pathlib import Path
-from logger import SimpleLogger, Colors
+from training.utils.logger import SimpleLogger, Colors
 
 
 # ANSI 颜色支持

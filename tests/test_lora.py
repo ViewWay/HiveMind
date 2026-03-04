@@ -1,9 +1,18 @@
+"""
+LoRA 模型推理测试脚本
+"""
+import sys
+from pathlib import Path
+
+# 添加项目根目录到路径
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
 
 MODEL_PATH = "../Qwen3.5-4B"
-ADAPTER_PATH = "./output/lora-adapter"
+ADAPTER_PATH = "../archive/output/lora-adapter"
 
 print("加载 tokenizer...")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)

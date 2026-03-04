@@ -19,7 +19,7 @@ from dataclasses import dataclass
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from swarm import SwarmExpertPool, ExpertConfig
-from logger import Colors
+from training.utils.logger import Colors
 
 # Rich 支持
 try:

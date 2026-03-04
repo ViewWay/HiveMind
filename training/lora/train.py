@@ -20,7 +20,7 @@ from transformers import (
 from peft import LoraConfig, get_peft_model
 from datasets import Dataset
 from pathlib import Path
-from logger import Colors
+from training.utils.logger import Colors
 
 # Rich 库支持 (可选)
 try:
